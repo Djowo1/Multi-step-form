@@ -50,18 +50,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Step 3 - Add-on selection
     document.querySelectorAll(".addon-card").forEach(card => {
+        const checkbox = card.querySelector('input[type="checkbox"]');
+        const addon = card.getAttribute("data-addon");
+    
         card.addEventListener("click", () => {
-            const addon = card.getAttribute("data-addon");
-            if (selectedAddOns.includes(addon)) {
+            // Toggle checkbox
+            checkbox.checked = !checkbox.checked;
+    
+            // Add or remove from selectedAddOns array
+            if (checkbox.checked) {
+                if (!selectedAddOns.includes(addon)) {
+                    selectedAddOns.push(addon);
+                }
+                card.classList.add("selected");
+            } else {
                 selectedAddOns = selectedAddOns.filter(item => item !== addon);
                 card.classList.remove("selected");
-            } else {
-                selectedAddOns.push(addon);
-                card.classList.add("selected");
             }
         });
     });
-
+    
     // Step Navigation
     document.getElementById("next-step-1").addEventListener("click", function () {
         if (validateStep1()) {
@@ -75,14 +83,25 @@ document.addEventListener("DOMContentLoaded", function () {
         showStep(currentStep);
     });
 
+    document.getElementById("back-step-2").addEventListener("click", function () {
+        currentStep = 1;
+        showStep(currentStep);
+    });
+
     document.getElementById("next-step-3").addEventListener("click", function () {
         currentStep = 4;
         showStep(currentStep);
     });
 
-    document.getElementById("back-step-2").addEventListener("click", () => showStep(1));
-    document.getElementById("back-step-3").addEventListener("click", () => showStep(2));
-    document.getElementById("back-step-4").addEventListener("click", () => showStep(3));
+    document.getElementById("back-step-3").addEventListener("click", function () {
+        currentStep = 2;
+        showStep(currentStep);
+    });
+
+    document.getElementById("back-step-4").addEventListener("click", function () {
+        currentStep = 3;
+        showStep(currentStep);
+    });
 
     document.getElementById("billing-toggle").addEventListener("change", function () {
         billingType = this.checked ? "yearly" : "monthly";
@@ -93,27 +112,31 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateSummary() {
         const summaryContainer = document.getElementById("summary-content");
         summaryContainer.innerHTML = "";
-
+    
         let total = 0;
-
-        // Plan Summary
+    
+        // Plan Summary with "Change" link
         if (selectedPlan && planPrices[selectedPlan]) {
             const planLabel = selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1);
             const planPrice = planPrices[selectedPlan][billingType];
             total += planPrice;
-
+    
             summaryContainer.innerHTML += `
-                <div class="summary-item">
-                    <p><strong>Plan:</strong> ${planLabel}</p>
-                    <p>$${planPrice}/${billingType === "monthly" ? "mo" : "yr"}</p>
+                <div class="summary-plan">
+                    <div>
+                        <p class="plan-label"><strong>${planLabel} (${billingType.charAt(0).toUpperCase() + billingType.slice(1)})</strong></p>
+                        <button id="change-plan" class="change-link">Change</button>
+                    </div>
+                    <p class="plan-price"><strong>$${planPrice}/${billingType === "monthly" ? "mo" : "yr"}</strong></p>
                 </div>
+                <hr>
             `;
         }
-
+    
         // Add-On Summary
-        if (selectedAddOns.length > 0) {
-            summaryContainer.innerHTML += `<h3>Selected Add-ons:</h3>`;
-            selectedAddOns.forEach(addon => {
+        const currentAddOns = getSelectedAddOns();
+        if (currentAddOns.length > 0) {
+            currentAddOns.forEach(addon => {
                 const addonInfo = addonPrices[addon];
                 if (addonInfo) {
                     const price = addonInfo[billingType];
@@ -127,30 +150,65 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
-
+    
+        // Total Summary
         summaryContainer.innerHTML += `
-            <hr>
-            <div class="summary-item">
-                <p><strong>Total:</strong></p>
-                <p><strong  class="total-price">$${total}/${billingType === "monthly" ? "mo" : "yr"}</strong></p>
+            <div class="summary-total">
+                <p>Total (per ${billingType === "monthly" ? "month" : "year"})</p>
+                <p class="total-price">+$${total}/${billingType === "monthly" ? "mo" : "yr"}</p>
             </div>
         `;
+    
+        const changeBtn = document.getElementById("change-plan");
+        if (changeBtn) {
+            changeBtn.addEventListener("click", () => {
+                currentStep = 2;
+                showStep(currentStep);
+            });
+        }
     }
 
     updatePlanPricing();
     showStep(currentStep);
+
+   // ✅ Enable clicking between current and previous steps until confirmation is shown
+let hasConfirmed = false; // New flag to track confirmation
+
+document.querySelectorAll(".step").forEach(step => {
+    step.addEventListener("click", function () {
+        if (hasConfirmed) return; // 🚫 Disable navigation once confirmed
+
+        const clickedStep = parseInt(step.getAttribute("data-step"));
+
+        let maxReachedStep = 1;
+        if (selectedPlan) maxReachedStep = 2;
+        if (selectedAddOns.length > 0 || currentStep >= 3) maxReachedStep = 3;
+        if (currentStep === 4) maxReachedStep = 4;
+
+        if (clickedStep <= maxReachedStep) {
+            currentStep = clickedStep;
+            showStep(currentStep);
+        }
+    });
 });
+
 
 // Confirm button action
 document.getElementById("confirm").addEventListener("click", function () {
-    document.querySelector("h2").style.display = "none";
-    document.querySelector("p").style.display = "none";
-    document.getElementById("summary-content").style.display = "none";
-    document.getElementById("back-step-4").style.display = "none";
-    document.getElementById("confirm").style.display = "none";
+    const step4Content = document.getElementById("step-4");
 
-    document.getElementById("confirmation-message").classList.remove("hidden");
+    Array.from(step4Content.children).forEach(child => {
+        if (child.id !== "confirmation-message") {
+            child.style.display = "none";
+        }
+    });
+
+    const confirmationMessage = document.getElementById("confirmation-message");
+    confirmationMessage.classList.remove("hidden");
+
+    hasConfirmed = true; // ✅ Prevent going back after confirmation
 });
+
 
 // Validation for Step 1
 function validateStep1() {
@@ -189,18 +247,12 @@ function validateStep1() {
     return isValid;
 }
 
-document.getElementById("confirm").addEventListener("click", function () {
-    // Hide everything except confirmation message and image
-    const step4Content = document.getElementById("step-4");
-
-    // Hide all children inside step-4
-    Array.from(step4Content.children).forEach(child => {
-        if (child.id !== "confirmation-message") {
-            child.style.display = "none";
-        }
+function getSelectedAddOns() {
+    const selected = [];
+    document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
+        selected.push(cb.dataset.addon);
     });
+    return selected;
+}
 
-    // Show the confirmation message
-    const confirmationMessage = document.getElementById("confirmation-message");
-    confirmationMessage.classList.remove("hidden");
 });
