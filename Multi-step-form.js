@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let currentStep = 1;
+    let maxReachedStep = 1;
+
     const totalSteps = 4;
     let billingType = "monthly"; // or 'yearly'
 
@@ -68,6 +70,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.classList.remove("selected");
             }
         });
+
+        // Clear error messages when user starts typing
+["name", "email", "phone"].forEach((field) => {
+    const input = document.getElementById(field);
+    const errorElement = document.getElementById(`${field}-error`);
+    
+    input.addEventListener("input", () => {
+        errorElement.textContent = "";
+        document.getElementById("general-error").textContent = "";
+    });
+});
+
     });
     
     // Step Navigation
@@ -75,21 +89,29 @@ document.addEventListener("DOMContentLoaded", function () {
         if (validateStep1()) {
             currentStep = 2;
             showStep(currentStep);
+            maxReachedStep = Math.max(maxReachedStep, currentStep);
+        showStep(currentStep);
         }
     });
 
     document.getElementById("next-step-2").addEventListener("click", function () {
         currentStep = 3;
         showStep(currentStep);
+        maxReachedStep = Math.max(maxReachedStep, currentStep);
+        showStep(currentStep);
     });
 
     document.getElementById("back-step-2").addEventListener("click", function () {
         currentStep = 1;
         showStep(currentStep);
+        maxReachedStep = Math.max(maxReachedStep, currentStep);
+        showStep(currentStep);
     });
 
     document.getElementById("next-step-3").addEventListener("click", function () {
         currentStep = 4;
+        showStep(currentStep);
+        maxReachedStep = Math.max(maxReachedStep, currentStep);
         showStep(currentStep);
     });
 
@@ -176,14 +198,9 @@ let hasConfirmed = false; // New flag to track confirmation
 
 document.querySelectorAll(".step").forEach(step => {
     step.addEventListener("click", function () {
-        if (hasConfirmed) return; // 🚫 Disable navigation once confirmed
+        if (hasConfirmed) return;
 
         const clickedStep = parseInt(step.getAttribute("data-step"));
-
-        let maxReachedStep = 1;
-        if (selectedPlan) maxReachedStep = 2;
-        if (selectedAddOns.length > 0 || currentStep >= 3) maxReachedStep = 3;
-        if (currentStep === 4) maxReachedStep = 4;
 
         if (clickedStep <= maxReachedStep) {
             currentStep = clickedStep;
@@ -191,6 +208,7 @@ document.querySelectorAll(".step").forEach(step => {
         }
     });
 });
+
 
 
 // Confirm button action
@@ -210,42 +228,70 @@ document.getElementById("confirm").addEventListener("click", function () {
 });
 
 
-// Validation for Step 1
-function validateStep1() {
-    let isValid = true;
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-
-    const namePattern = /^[a-zA-Z\s]+$/;
-    const phonePattern = /^[0-9]{11}$/;
-
-    document.getElementById("name-error").textContent = "";
-    document.getElementById("email-error").textContent = "";
-    document.getElementById("phone-error").textContent = "";
-    document.getElementById("general-error").textContent = "";
-
-    if (!name || !namePattern.test(name)) {
-        document.getElementById("name-error").textContent = "Enter a valid name.";
-        isValid = false;
+// Validation for Step 1function validateStep1() {
+    function validateStep1() {
+        let isValid = true;
+    
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const phoneInput = document.getElementById("phone");
+    
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+    
+        const namePattern = /^[a-zA-Z\s]+$/;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phonePattern = /^[0-9]{11}$/;
+    
+        const nameError = document.getElementById("name-error");
+        const emailError = document.getElementById("email-error");
+        const phoneError = document.getElementById("phone-error");
+        const generalError = document.getElementById("general-error");
+    
+        // Reset errors
+        nameError.textContent = "";
+        emailError.textContent = "";
+        phoneError.textContent = "";
+        generalError.textContent = "";
+    
+        // Name validation
+        if (!name) {
+            nameError.textContent = "This field is required.";
+            isValid = false;
+        } else if (!namePattern.test(name)) {
+            nameError.textContent = "Please enter a valid name.";
+            isValid = false;
+        }
+    
+        // Email validation
+        if (!email) {
+            emailError.textContent = "This field is required.";
+            isValid = false;
+        } else if (!emailPattern.test(email)) {
+            emailError.textContent = "Enter a valid email address.";
+            isValid = false;
+        }
+    
+        // Phone validation
+        if (!phone) {
+            phoneError.textContent = "This field is required.";
+            isValid = false;
+        } else if (!/^\d+$/.test(phone)) {
+            phoneError.textContent = "Please enter a valid phone number.";
+            isValid = false;
+        } else if (phone.length !== 11) {
+            phoneError.textContent = "Please enter 11-digits only.";
+            isValid = false;
+        }
+    
+        if (!isValid) {
+            generalError.textContent = "Please fix the errors and try again.";
+        }
+    
+        return isValid;
     }
-
-    if (!email.includes("@")) {
-        document.getElementById("email-error").textContent = "Enter a valid email.";
-        isValid = false;
-    }
-
-    if (!phonePattern.test(phone)) {
-        document.getElementById("phone-error").textContent = "Enter a 11-digit phone number.";
-        isValid = false;
-    }
-
-    if (!isValid) {
-        document.getElementById("general-error").textContent = "Please fix the errors and try again.";
-    }
-
-    return isValid;
-}
+    
 
 function getSelectedAddOns() {
     const selected = [];

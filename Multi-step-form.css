@@ -16,7 +16,10 @@ body {
 .multi-step-form {
   display: flex;
   flex-direction: row;
-  max-width: 70%;
+  min-width: 70vw;
+  max-width: 70vw;
+  min-height: 85vh;
+  max-height: 85vh;
   margin: auto;
   background: white;
   border-radius: 15px;
@@ -83,10 +86,10 @@ body {
 
 /* Form Content */
 .form-content {
-  width: 80%;
+  width: 80vw;
   padding: 30px;
   margin-top: 50px;
-  min-height: 100%;
+  height: 100vh;
   margin-left: 40px;
 }
 
@@ -95,6 +98,7 @@ body {
   padding: 20px;
   background: #fff;
  transition: all 0.3s ease-in-out;
+
 }
 
 .step-content.active {
@@ -124,7 +128,7 @@ form label {
 }
 
 form input {
-  width: 85%;
+  max-width: 40vw;
   padding: 14px 16px;
   font-size: 15px;
   border: 1.5px solid #ccc;
@@ -168,7 +172,6 @@ form input:focus {
   cursor: pointer;
   font-weight: 500;
   transition: 0.3s ease;
-  margin-left: 200px;
 }
 
 .next-btn:hover {
@@ -197,7 +200,8 @@ form input:focus {
   
   .plan-card {
     flex: 1;
-    min-width: 100px;
+    min-width: 3vw;
+    min-height: 190px;
     padding: 20px;
     border: 2px solid #ccc;
     border-radius: 12px;
@@ -297,6 +301,8 @@ form input:focus {
   transition: 0.3s ease;
   position: relative;
   user-select: none;
+  min-width: 38vw;
+  max-width: 38vw;
 }
 
 .addon-card input[type="checkbox"] {
@@ -305,7 +311,7 @@ form input:focus {
   transform: translateY(-50%) scale(1.2);
   accent-color: #473dff;
   pointer-events: none;
-  margin-left: -320px;
+  margin-left: -24vw;
 }
 
 .addon-card:hover {
@@ -345,11 +351,12 @@ form input:focus {
   
  /* Summary Box */
 #summary-box {
-  background-color: hsl(231, 100%, 99%);
+  background-color:hsl(228, 100%, 99%);
   padding: 20px;
   border-radius: 10px;
   margin: 20px 0;
   font-size: 20px;
+  min-height: 300px;
 }
 
 /* Plan Summary Header */
@@ -474,6 +481,7 @@ form input:focus {
     font-weight: 400;
     margin-top: 50px;
     color:hsl(231, 11%, 63%) ;
+    max-width: 400px;
   }
   
   #confirmation-image {
@@ -497,15 +505,6 @@ form input:focus {
   .hidden {
     display: none;
   }
-
-    #next-step-1,
-    #next-step-2,
-    #next-step-3 {
-      margin-left: 60%;
-    }
-  
-
-  
 
 
   /* Common styles for the form */
@@ -552,37 +551,292 @@ input {
   background-color: #cce7cc;
 }
 
+#next-step-1 {
+  margin-left: 400px;
+}
+
+#next-step-2 {
+  margin-top: -45px;
+}
+ 
+#back-step-2 {
+  margin-top: -45px;
+  background: none;
+}
+
+#next-step-3 {
+  margin-top: 15px;
+}
+
+#back-step-3 {
+  margin-top: 15px;
+  background: none;
+}
+
+#confirm{
+  margin-top: -30px;
+}
+
+
+#back-step-4 {
+  margin-top: -30px;
+  background: none;
+}
 /* Responsive Media Queries */
 
 
-@media screen and (max-width: 920px) {
-  #next-step-1,
-  #next-step-2,
-  #next-step-3 {
-      margin-left: 45%;
+
+
+@media screen and (max-width: 1200px) {
+  #next-step-1 {
+    margin-left: 350px;
   }
 
-  .multi-step-form {
-    max-width: 700px;
-  }
+}
 
-  .step-content {
-    margin-top: 10px;
-   }
-  
+@media screen and (max-width: 1134px) {
+  form input {
+    max-width: 30vw;
+}
+
+.addon-card {
+  min-width: 30vw;
+  max-width: 30vw;
+}
+
+#next-step-1 {
+  margin-left: 250px;
+  margin-top: -20px;
+}
+
 .addon-card input[type="checkbox"] {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%) scale(1.2);
-  accent-color: #473dff;
-  pointer-events: none;
-  margin-left: -200px;
+  margin-left: -20vw;
+}
+
+#confirm,
+#back-step-4 {
+  margin-top: -40px;
 }
 }
 
+@media screen and (max-width: 1000px) {
 
 
-@media screen and (max-width: 480px) {
+.plann {
+  font-size:12px ;
+}
+
+  .plan-card img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .plan-card .bonus {
+    font-size: 0.85rem;
+  }
+
+  #next-step-1 {
+    margin-left: 200px;
+  }
+
+  #next-step-2, 
+  #back-step-2 {
+    margin-top: -55px;
+  }
+}
+
+@media screen and (max-width: 954px) {
+  .multi-step-form {
+    min-width: 80vw;
+    max-width: 80vw;
+   
+  }
+
+  #next-step-1 {
+    margin-left: 190px;
+  }
+
+#next-step-2,
+#back-step-2 {
+    margin-top: -65px;
+    margin-bottom: 30px;
+  }
+
+  #confirm,
+#back-step-4 {
+  margin-top: 50px;
+}
+}
+
+@media screen and  (min-width: 500px) and  (max-width: 900px) {
+ .multi-step-form   {
+    overflow-y: scroll;
+  }
+
+  .sidebar {
+    width: 250px;
+    min-height: 700px;
+  }
+
+  .plans {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+
+  .plan-card {
+    min-width: 200px;
+    max-width: 200px;
+   min-height: 90px;
+   max-height: 90px;
+   gap: 7px;
+  }
+
+  .plann {
+    font-size:10px ;
+  }
+
+  .plan-card img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .plan-card .bonus {
+    font-size: 0.75rem;
+  }
+
+  .plan-card .price {
+    font-size: 8px 
+  }
+
+  .addon-card {
+    min-width: 30vw;
+    max-width: 30vw;
+  }
+
+  .addon-card input[type="checkbox"] {
+    margin-left: -23vw;
+  }
+  
+  #next-step-1 {
+    margin-left: 160px;
+  }
+}
+
+@media screen and (max-width: 815px) {
+  form input {
+    max-width: 26vw;
+  }
+
+  #next-step-1 {
+    margin-left: 120px;
+  }
+}
+
+@media screen and (max-width: 729px) {
+  .addon-card {
+    min-width: 25vw;
+    max-width: 25vw;
+  }
+
+  .addon-card input[type="checkbox"] {
+    margin-left: -20vw;
+  }
+
+  #next-step-1 {
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+
+  .plan-card {
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .addon-card {
+    min-width: 20vw;
+    max-width: 20vw;
+  }
+
+  .addon-card input[type="checkbox"] {
+    margin-left: -18vw;
+  }
+
+  .addon-card h3 {
+    margin: 0;
+    font-size: 0.7rem;
+    color: #02295a;
+  }
+  
+  .addon-card p {
+    margin: 0.2rem 0 0;
+    color: #9699ab;
+    font-size: 0.5rem;
+  }
+  
+  .addon-card .price {
+    color: #6D61AD;
+    font-weight: bolder;
+    font-size: 0.6rem;
+  }
+
+  #confirmation-message {
+    max-width: 140px;
+    font-size: 11px;
+  }
+
+  .form-content {
+    width: 80vw;
+    margin-left: -23px;
+  }
+
+  #next-step-1 {
+    margin-left: 60px;
+  }
+
+
+  .summary-plan {
+
+    font-size: 15px;
+  }
+  
+  
+  .summary-addon,
+  .summary-total {
+    font-size: 12px;
+  }
+  
+  .change-link {
+      font-size: 0.8rem;
+  }
+  
+  .summary-total {
+    font-size: 13px;
+}
+}
+
+@media screen and (max-width: 522px) {
+.plan-card {
+    min-width: 130px;
+    max-width: 130px;  
+}
+
+.addon-card input[type="checkbox"] {
+  margin-left: -22vw;
+}
+
+
+.nice {
+  font-size: 13px;
+}
+}
+
+@media screen and (max-width: 480px) and (max-height:927px) {
 
   body {
     background-color: white;
@@ -652,21 +906,18 @@ input {
     margin-top: 20px;
   }
 
-  #next-step-1,
-  #next-step-2,
-  #next-step-3 {
-      margin-left: 20%
-  }
-
   .mobile-hide {
     display: none;
   }
 
+form input {
+  max-width: 70vw;
+}
 
   #next-step-1 {
     position: absolute;
-    margin-top: 180px;
-    margin-left: 250px;
+    margin-top: 80px;
+    margin-left: 170px;
   }
   #next-step-2 {
     position: absolute;
@@ -719,6 +970,7 @@ input {
     transition: all 0.3s ease;
   min-height: 90px;
     overflow: hidden;
+    min-width: 300px;
   }
   
   .plan-card img {
@@ -776,6 +1028,27 @@ input {
     gap: 5px;
   }
   
+  .addon-card {
+    min-width: 60vw;
+    max-width: 60vw;
+  }
+
+  .addon-card input[type="checkbox"] {
+    margin-left: -43vw;
+  }
+
+  .addon-card h3 {
+    font-size: 1.1rem;
+  }
+  
+  .addon-card p {
+    font-size: 0.9rem;
+  }
+  
+  .addon-card .price {
+    font-size: 1rem;
+  }
+
   #summary-content .summary-plan {
     font-size: 18px;
   }
@@ -802,465 +1075,146 @@ input {
     height: 280px;
   }
 
-  
-}
-
-@media screen and (max-width:363px) {
-  .plan-card{
-    min-height: 100px;
-  }
-}
-
-@media (max-height:883px) {
-  .multi-step-form {
-    min-height: 680px;
-  }
-
-  .plan-card {
-    min-height: 70px;
-  }
-
-  .plan-card img {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .plan-card h3 {
-    font-size: 15px;
-  }
-  
-  .plan-card .price {
-    font-size: 13px;
-  }
-  
-  .plan-card .bonus {
-    font-size: 13px;
-  }
-
-.step-content2 {
-  height:508px;
-  overflow-y: none;
-}
-  
   #next-step-1 {
-    position: absolute;
-    margin-top: 150px;
-    margin-left: 150px;
-  }
-  #next-step-2 {
-    position: absolute;
-    margin-top: -38px;
-    margin-left: 170px;
-  }
-  #next-step-3 {
-    position: absolute;
-    margin-top: 125px;
-    margin-left: 170px;
-  }
-  #confirm {
-    position: absolute;
-    margin-top: 120px;
-    margin-left: 170px;
-  }
-
-  .back-btn {
-    position: absolute;
-    font-size: 19px;
-  }
-
- #back-step-2 {
-  background: none;
-  margin-top: -30px;
- }
- #back-step-3 {
-  margin-top: 115px;
- }
- #back-step-4 {
-  position: absolute;
-  margin-top: 130px;
- }
-
- .addon-card input[type="checkbox"] {
-  margin-left: -158px;
-}
-
-.form-content {
-  margin-top: -110px;
-}
-
-}
-
-@media (max-height:927px) {
-
-  #next-step-1 {
-    position: absolute;
-    margin-top: 120px;
     margin-left: 220px;
-  }
-  #next-step-2 {
-    position: absolute;
-    margin-top: -28px;
-    margin-left: 220px;
-  }
-  #next-step-3 {
-    position: absolute;
-    margin-top: 155px;
-    margin-left: 220px;
-  }
-  #confirm {
-    position: absolute;
-    margin-top: 70px;
-    margin-left: 220px;
-  }
-
-  .back-btn {
-    position: absolute;
-    font-size: 19px;
-  }
-
- #back-step-2 {
-  background: none;
-  margin-top: -20px;
- }
- #back-step-3 {
-  margin-top: 165px;
- }
- #back-step-4 {
-  position: absolute;
-  margin-top: 80px;
- }
-
- .addon-card input[type="checkbox"] {
-  margin-left: -250px;
-}
-}
-  
-
-@media (max-height:852px) {
-  
-  #next-step-1 {
-    position: absolute;
-    margin-top: 120px;
-    margin-left: 200px;
-  }
-  #next-step-2 {
-    position: absolute;
-    margin-top: -28px;
-    margin-left: 170px;
-  }
-  #next-step-3 {
-    position: absolute;
-    margin-top: 75px;
-    margin-left: 170px;
-  }
-  #confirm {
-    position: absolute;
-    margin-top: 70px;
-    margin-left: 170px;
-  }
-
-  .back-btn {
-    position: absolute;
-    font-size: 19px;
-  }
-
- #back-step-2 {
-  background: none;
-  margin-top: -20px;
- }
- #back-step-3 {
-  margin-top: 85px;
- }
- #back-step-4 {
-  position: absolute;
-  margin-top: 80px;
- }
- .addon-card input[type="checkbox"] {
-  margin-left: -210px;
-}
-}
-
-@media (max-height:810px) {
-  .multi-step-form {
-    min-height: 680px;
-  }
-
-  .plan-card {
-    min-height: 70px;
-  }
-
-  .plan-card img {
-    width: 30px;
-    height: 30px;
+    margin-top: 180px;
   }
   
-  .plan-card h3 {
-    font-size: 15px;
-  }
-  
-  .plan-card .price {
-    font-size: 13px;
-  }
-  
-  .plan-card .bonus {
-    font-size: 13px;
-  }
-
-.step-content2 {
-  height:508px;
-  overflow-y: none;
-}
-  
-  #next-step-1 {
-    position: absolute;
-    margin-top: 100px;
-    margin-left: 170px;
-  }
-  #next-step-2 {
-    position: absolute;
-    margin-top: -28px;
-    margin-left: 170px;
-  }
-  #next-step-3 {
-    position: absolute;
-    margin-top: 75px;
-    margin-left: 170px;
-  }
-  #confirm {
-    position: absolute;
-    margin-top: 70px;
-    margin-left: 170px;
-  }
-
-  .back-btn {
-    position: absolute;
-    font-size: 19px;
-  }
-
- #back-step-2 {
-  background: none;
-  margin-top: -20px;
- }
- #back-step-3 {
-  margin-top: 85px;
- }
- #back-step-4 {
-  position: absolute;
-  margin-top: 80px;
- }
-
- .addon-card input[type="checkbox"] {
-  margin-left: -165px;
-}
-
-.form-content {
-  margin-top: -110px;
-}
-
-}
-
-@media (max-height:782px) {
-  #next-step-1 {
-    position: absolute;
-    margin-top: 90px;
-    margin-left: 170px;
-  }
-  #next-step-2 {
-    position: absolute;
-    margin-top: -36px;
-    margin-left: 170px;
-  }
-  #next-step-3 {
-    position: absolute;
-    margin-top: 70px;
-    margin-left: 170px;
-  }
-  #confirm {
-    position: absolute;
-    margin-top: 63px;
-    margin-left: 170px;
-  }
-
-  .back-btn {
-    position: absolute;
-    font-size: 19px;
-  }
-
- #back-step-2 {
-  background: none;
-  margin-top: -28px;
- }
- #back-step-3 {
-  margin-top: 80px;
- }
- #back-step-4 {
-  position: absolute;
-  margin-top: 73px;
- }
-}
-
-
-@media (min-width:393px) and (max-width:393px) {
-
-  #next-step-1 {
-    position: absolute;
-    margin-top: 120px;
-    margin-left: 200px;
-  }
-  #next-step-2 {
-    position: absolute;
-    margin-top: -20px;
-    margin-left: 200px;
-  }
-  #next-step-3 {
-    position: absolute;
-    margin-top: 125px;
-    margin-left: 200px;
-  }
-  #confirm {
-    position: absolute;
-    margin-top: 80px;
-    margin-left: 200px;
-  }
-
-  .back-btn {
-    position: absolute;
-    font-size: 19px;
-  }
-
- #back-step-2 {
-  background: none;
-  margin-top: -12px;
- }
- #back-step-3 {
-  margin-top: 135px;
- }
- #back-step-4 {
-  position: absolute;
-  margin-top: 90px;
- }
-}
-
-
-@media screen and (max-height: 569px) {
-
-  #next-step-1 {
-    position: absolute;
-    margin-top: 110px;
-    margin-left: 130px;
-  }
-  #next-step-2 {
-    position: absolute;
-    margin-top: -10px;
-    margin-left: 130px;
-  }
-  #next-step-3 {
-    position: absolute;
-    margin-top: 220px;
-    margin-left: 130px;
-  }
-  #confirm {
-    position: absolute;
-    margin-top: 150px;
-    margin-left: 140px;
-  }
-
-  .back-btn {
-    position: absolute;
-    font-size: 19px;
-  }
-
- #back-step-2 {
-  margin-top: -5px;
- }
- #back-step-3 {
-  margin-top: 220px;
- }
- #back-step-4 {
-  position: absolute;
-  margin-top: 150px;
- }
-
- .addon-card input[type="checkbox"] {
-  margin-left: -145px;
-}
-}
-
-
-@media (max-height:889px) {
-
-  .addon-card input[type="checkbox"] {
-    margin-left: -155px;
-  }
-  }
-@media (min-width:372px) and (max-width:376px) {
-
-  .addon-card input[type="checkbox"] {
-    margin-left: -165px;
-  }
-  }
-
-  @media (min-width:411px) and (max-width:429px) {
-   .addon-card input[type="checkbox"] {
-    margin-left: -200px;
-  }
-  }
-
-  
-@media  (min-width: 1200px) and (max-width: 2291px) and  (max-height: 800px) {
-  .multi-step-form {
-    max-width: 80%;
-  }
-  
-  .step-content {
-   margin-top: 180px;
-  }
-  
-  .addon-card input[type="checkbox"] {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%) scale(1.2);
-    accent-color: #473dff;
-    pointer-events: none;
-    margin-left: -310px;
-  }
-
-  #next-step-1 {
-    position: absolute;
-    margin-left: 330px;
-  }
-  #next-step-2 {
-    margin-top: 80px;
-    margin-left: 400px;
-  }
-  #next-step-3 {
-    margin-left: 430px;
-  }
-  #confirm {
-    margin-left: 340px;
+  #next-step-2{
+    margin-top: -8px;
   }
 
   #back-step-2 {
-    margin-top: 80px;
+    margin-top: 8px;
   }
-
-  .plan {
-    flex: 1;
-  }
-  .plan-card {
-   min-width: 100px;
-   min-height: 150px;
-  }
-
-  .addon-card {
-    min-width: 500px;
-  }
-}
-
- 
-@media  (min-width: 390px) and (max-width: 844px) and  (max-height: 851px) {.addon-card input[type="checkbox"] {
-  margin-left: -175px;
-}
-}
- 
   
+  #next-step-3 {
+    margin-top: 220px;
+  }
+
+  #back-step-3 {
+    margin-top: 230px;
+  }
+  
+  #confirm,
+  #back-step-4 {
+    margin-top: 135px;
+  }
+
+  #confirmation-message {
+    max-width: 270px;
+    font-size: 17px;
+    margin-left: 20px;
+  }
+
+  
+.nice {
+  font-size: 16px;
+}
+  
+}
+@media screen and (max-width: 480px) and (max-height:850px) {
+
+  .plan-card {
+    min-width: 260px;
+  }
+ 
+#next-step-1 {
+  margin-left: 220px;
+  margin-top: 120px;
+}
+
+#next-step-2{
+  margin-top: -70px;
+  margin-left: 210px;
+}
+
+#back-step-2 {
+  margin-top: -60px;
+  background: none;
+}
+
+#next-step-3 {
+  margin-top: 130px;
+  margin-left: 210px;
+}
+
+#back-step-3 {
+  margin-top: 140px;
+  background: none;
+}
+
+#confirm {
+  margin-top: 40px;
+  margin-left: 210px;
+}
+#back-step-4 {
+  margin-top: 40px;
+  background: none;
+}
+
+  .step-content2 {
+    height: 560px;
+    overflow-y: none;
+  }
+  
+}
+
+
+
+@media screen and (max-width: 480px) and (max-height:813px) {
+
+
+  .multi-step-form {
+    min-height: 740px;
+  }
+
+  .form-content {
+    margin-top: -109px;
+  }
+
+  .plan-card {
+    min-width: 260px;
+  }
+ 
+#next-step-1 {
+  margin-left: 180px;
+  margin-top: 90px;
+}
+
+#next-step-2{
+  margin-top: -80px;
+  margin-left: 180px;
+}
+
+#back-step-2 {
+  margin-top: -70px;
+  background: none;
+}
+
+#next-step-3 {
+  margin-top: 100px;
+  margin-left: 180px;
+}
+
+#back-step-3 {
+  margin-top: 110px;
+  background: none;
+}
+
+#confirm {
+  margin-top: 40px;
+  margin-left: 190px;
+}
+#back-step-4 {
+  margin-top: 40px;
+  background: none;
+}
+  
+  
+  .step-content2 {
+    height: 550px;
+    overflow-y: none;
+  }
+  
+}
