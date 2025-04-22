@@ -18,8 +18,8 @@ body {
   flex-direction: row;
   min-width: 70vw;
   max-width: 70vw;
-  min-height: 84vh;
-  max-height: 84vh;
+  min-height: 85vh;
+  max-height: 85vh;
   margin: auto;
   background: white;
   border-radius: 15px;
@@ -211,6 +211,10 @@ form input:focus {
     background-color: #F8F9FE;
     box-shadow: 0 0 3px #5449A7;
   }
+
+  .plan-card h3 {
+    color: #02295a;
+  }
   
   .plan-card img {
     width: 40px;
@@ -220,8 +224,14 @@ form input:focus {
   
   .plan-card .bonus {
     font-size: 0.85rem;
-    color: #4a90e2;
+    color: #02295a;
     margin-top: 5px;
+    font-weight: 500;
+  }
+
+  .plan-card p {
+     color: hsl(231, 11%, 63%);
+    font-weight: 400;
   }
   
   .toggle-container {
