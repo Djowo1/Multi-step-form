@@ -83,8 +83,6 @@ body {
   letter-spacing: 1px;
 }
 
-
-/* Form Content */
 .form-content {
   width: 80vw;
   padding: 30px;
@@ -104,8 +102,6 @@ body {
 .step-content.active {
   display: block;
 }
-
-/* Typography */
 
 .form-content h2 {
   color: #032b56;
@@ -190,7 +186,6 @@ form input:focus {
   font-weight: 900;
 }
   
-  /* Plan Cards */
   .plans {
     display: flex;
     gap: 20px;
@@ -228,7 +223,6 @@ form input:focus {
     margin-top: 5px;
   }
   
-  /* Toggle Switch */
   .toggle-container {
     display: flex;
     align-items: center;
@@ -239,6 +233,17 @@ form input:focus {
     border-radius: 8px;
     background-color: #e2e4e263;
     font-weight: bold;
+  }
+
+  .toggle-container .nice {
+    color: hsl(231, 11%, 63%);
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .toggle-container .active {
+    color: #032b56;
+    font-weight: 700;
   }
   
   .switch {
@@ -282,7 +287,6 @@ form input:focus {
     transform: translateX(26px);
   }
   
- /* Add-on Cards */
 .addons {
   display: flex;
   flex-direction: column;
@@ -348,8 +352,6 @@ form input:focus {
   font-weight: bold;
 }
 
-  
- /* Summary Box */
 #summary-box {
   background-color:hsl(228, 100%, 99%);
   padding: 20px;
@@ -359,7 +361,6 @@ form input:focus {
   min-height: 300px;
 }
 
-/* Plan Summary Header */
 #summary-content .plan-header {
   display: flex;
   justify-content: space-between;
@@ -373,7 +374,6 @@ form input:focus {
   font-size: 16px;
 }
 
-/* Change Plan Link */
 #summary-content .change-link {
   font-size: 14px;
   text-decoration: underline;
@@ -382,34 +382,35 @@ form input:focus {
   margin-top: 4px;
 }
 
-/* Separator */
+#summary-content .change-link:hover {
+  color: #9078D8;
+  cursor: pointer;
+  font-weight: 700;
+}
+
 #summary-content .summary-divider {
   height: 1px;
   background-color: hsl(229, 24%, 87%);
   margin: 15px 0;
 }
 
-/* Add-ons */
 #summary-content .summary-item {
   display: flex;
   justify-content: space-between;
   color: hsl(231, 11%, 63%);
   font-size: 13px;
   font-weight: bold;
-
 }
 
-/* Total Section */
 #summary-content .total {
   display: flex;
   justify-content: space-between;
   padding: 15px 0 0;
-  font-weight: bolder;
+  font-weight: 700;
   font-size: 18px;
-  color: hsl(243, 100%, 62%);
+  color: #9078D8;
 }
 
-/* Buttons */
 .button-container {
   display: flex;
   justify-content: space-between;
@@ -436,6 +437,10 @@ form input:focus {
   transition: 0.3s ease;
 }
 
+#confirm:hover {
+  background-color:#9078D8 ;
+}
+
 .summary-plan {
   display: flex;
   justify-content: space-between;
@@ -445,7 +450,6 @@ form input:focus {
   margin-top: -20px;
   font-weight: bold;
 }
-
 
 .summary-addon,
 .summary-total {
@@ -473,8 +477,6 @@ form input:focus {
     border-top: 1px solid #ccc;
 }
 
-  
-  /* Confirmation Message */
   #confirmation-message {
     text-align: center;
     padding: 20px;
@@ -501,13 +503,10 @@ form input:focus {
     font-size: 18px;
   }
   
- 
   .hidden {
     display: none;
   }
 
-
-  /* Common styles for the form */
 .form-step {
   padding: 20px;
   margin: 10px;
@@ -525,7 +524,6 @@ input {
   width: 100%;
 }
 
-/* Step Indicators */
 .step-indicator {
   display: flex;
   justify-content: space-between;
@@ -542,7 +540,6 @@ input {
   background-color: #4CAF50;
 }
 
-/* Active Step */
 .step-1.active {
   background-color: #cce7cc;
 }
@@ -577,21 +574,15 @@ input {
   margin-top: -30px;
 }
 
-
 #back-step-4 {
   margin-top: -30px;
   background: none;
 }
 /* Responsive Media Queries */
-
-
-
-
 @media screen and (max-width: 1200px) {
   #next-step-1 {
     margin-left: 350px;
   }
-
 }
 
 @media screen and (max-width: 1134px) {
@@ -620,8 +611,6 @@ input {
 }
 
 @media screen and (max-width: 1000px) {
-
-
 .plann {
   font-size:12px ;
 }
@@ -649,7 +638,6 @@ input {
   .multi-step-form {
     min-width: 80vw;
     max-width: 80vw;
-   
   }
 
   #next-step-1 {
@@ -686,7 +674,6 @@ input {
     margin-bottom: 20px;
   }
   
-
   .plan-card {
     min-width: 200px;
     max-width: 200px;
@@ -804,7 +791,6 @@ input {
 
     font-size: 15px;
   }
-  
   
   .summary-addon,
   .summary-total {
@@ -1053,19 +1039,16 @@ form input {
     font-size: 18px;
   }
   
-  /* Change Plan Link */
   #summary-content .change-link {
     font-size: 16px;
     font-weight: bolder;
   }
   
-  /* Add-ons */
   #summary-content .summary-item {
     font-weight: bolder;
     font-size: 16px;
   }
   
-  /* Total Section */
   #summary-content .total {
     font-weight: bolder;
     font-size: 20px;
@@ -1107,7 +1090,6 @@ form input {
     margin-left: 20px;
   }
 
-  
 .nice {
   font-size: 16px;
 }
@@ -1154,16 +1136,23 @@ form input {
 }
 
   .step-content2 {
-    height: 560px;
+    height: 540px;
     overflow-y: none;
   }
   
+.plan-card h3 {
+  font-size: 16px;
+}
+.plan-card p {
+  font-size: 14px;
+}
+.plan-card bonus {
+  font-size: 15px;
 }
 
-
+}
 
 @media screen and (max-width: 480px) and (max-height:813px) {
-
 
   .multi-step-form {
     min-height: 740px;
@@ -1210,7 +1199,6 @@ form input {
   margin-top: 40px;
   background: none;
 }
-  
   
   .step-content2 {
     height: 550px;

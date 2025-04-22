@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let maxReachedStep = 1;
 
     const totalSteps = 4;
-    let billingType = "monthly"; // or 'yearly'
+    let billingType = "monthly";
 
     let selectedPlan = null;
     let selectedAddOns = [];
@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // Toggle checkbox
             checkbox.checked = !checkbox.checked;
     
-            // Add or remove from selectedAddOns array
             if (checkbox.checked) {
                 if (!selectedAddOns.includes(addon)) {
                     selectedAddOns.push(addon);
@@ -95,10 +94,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("next-step-2").addEventListener("click", function () {
+        if (!selectedPlan) {
+            alert("Please choose a plan");
+            return;
+        }
+    
         currentStep = 3;
         showStep(currentStep);
         maxReachedStep = Math.max(maxReachedStep, currentStep);
-        showStep(currentStep);
+    
     });
 
     document.getElementById("back-step-2").addEventListener("click", function () {
@@ -125,11 +129,31 @@ document.addEventListener("DOMContentLoaded", function () {
         showStep(currentStep);
     });
 
-    document.getElementById("billing-toggle").addEventListener("change", function () {
+
+    const billingToggle = document.getElementById("billing-toggle");
+
+    billingToggle.addEventListener("change", function () {
         billingType = this.checked ? "yearly" : "monthly";
         updatePlanPricing();
+        updateToggleLabelStyles();
     });
-
+    
+    function updateToggleLabelStyles() {
+        const labels = document.querySelectorAll(".toggle-container .nice");
+        const [monthlyLabel, yearlyLabel] = labels;
+    
+        if (billingType === "monthly") {
+            monthlyLabel.classList.add("active");
+            yearlyLabel.classList.remove("active");
+        } else {
+            yearlyLabel.classList.add("active");
+            monthlyLabel.classList.remove("active");
+        }
+    }
+    
+    updateToggleLabelStyles();
+    
+    
     // Step 4 - Summary
     function updateSummary() {
         const summaryContainer = document.getElementById("summary-content");
@@ -194,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showStep(currentStep);
 
    // ✅ Enable clicking between current and previous steps until confirmation is shown
-let hasConfirmed = false; // New flag to track confirmation
+let hasConfirmed = false; 
 
 document.querySelectorAll(".step").forEach(step => {
     step.addEventListener("click", function () {
@@ -209,8 +233,6 @@ document.querySelectorAll(".step").forEach(step => {
     });
 });
 
-
-
 // Confirm button action
 document.getElementById("confirm").addEventListener("click", function () {
     const step4Content = document.getElementById("step-4");
@@ -224,9 +246,8 @@ document.getElementById("confirm").addEventListener("click", function () {
     const confirmationMessage = document.getElementById("confirmation-message");
     confirmationMessage.classList.remove("hidden");
 
-    hasConfirmed = true; // ✅ Prevent going back after confirmation
+    hasConfirmed = true; 
 });
-
 
 // Validation for Step 1function validateStep1() {
     function validateStep1() {
@@ -255,7 +276,6 @@ document.getElementById("confirm").addEventListener("click", function () {
         phoneError.textContent = "";
         generalError.textContent = "";
     
-        // Name validation
         if (!name) {
             nameError.textContent = "This field is required.";
             isValid = false;
@@ -264,7 +284,6 @@ document.getElementById("confirm").addEventListener("click", function () {
             isValid = false;
         }
     
-        // Email validation
         if (!email) {
             emailError.textContent = "This field is required.";
             isValid = false;
@@ -273,7 +292,6 @@ document.getElementById("confirm").addEventListener("click", function () {
             isValid = false;
         }
     
-        // Phone validation
         if (!phone) {
             phoneError.textContent = "This field is required.";
             isValid = false;
