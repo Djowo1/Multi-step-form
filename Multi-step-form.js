@@ -310,7 +310,6 @@ document.getElementById("confirm").addEventListener("click", function () {
         return isValid;
     }
     
-
 function getSelectedAddOns() {
     const selected = [];
     document.querySelectorAll('.addon-checkbox:checked').forEach(cb => {
