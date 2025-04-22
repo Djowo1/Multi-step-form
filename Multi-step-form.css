@@ -25,10 +25,11 @@ body {
   border-radius: 15px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  margin-top: 10px;
 }
 
 .sidebar {
-  width: 250px;
+  width: 385px;
   background-color: #483eff;
   background: #4a90e2 url("images/bg-sidebar-desktop.svg") no-repeat;
   background-size: cover;
