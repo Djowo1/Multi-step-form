@@ -18,8 +18,8 @@ body {
   flex-direction: row;
   min-width: 70vw;
   max-width: 70vw;
-  min-height: 85vh;
-  max-height: 85vh;
+  min-height: 84vh;
+  max-height: 84vh;
   margin: auto;
   background: white;
   border-radius: 15px;
@@ -125,7 +125,7 @@ form label {
 }
 
 form input {
-  max-width: 40vw;
+  max-width: 36vw;
   padding: 14px 16px;
   font-size: 15px;
   border: 1.5px solid #ccc;
@@ -550,7 +550,7 @@ input {
 }
 
 #next-step-1 {
-  margin-left: 400px;
+  margin-left: 410px;
 }
 
 #next-step-2 {
@@ -580,9 +580,25 @@ input {
   background: none;
 }
 /* Responsive Media Queries */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1316px) {
+
   #next-step-1 {
     margin-left: 350px;
+  }
+
+}
+@media screen and (max-width: 1219px) {
+
+  #next-step-1 {
+    margin-left: 290px;
+  }
+
+}
+
+
+@media screen and (max-width: 1200px) {
+  #next-step-1 {
+    margin-left: 290px;
   }
 }
 
@@ -611,6 +627,12 @@ input {
 }
 }
 
+@media screen and (max-width: 1057px) {
+  #next-step-1 {
+    margin-left: 210px;
+  }
+}
+
 @media screen and (max-width: 1000px) {
 .plann {
   font-size:12px ;
@@ -626,7 +648,7 @@ input {
   }
 
   #next-step-1 {
-    margin-left: 200px;
+    margin-left: 190px;
   }
 
   #next-step-2, 
@@ -642,7 +664,7 @@ input {
   }
 
   #next-step-1 {
-    margin-left: 190px;
+    margin-left: 180px;
   }
 
 #next-step-2,
